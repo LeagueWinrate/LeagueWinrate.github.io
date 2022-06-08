@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const targetPath = './src/environments/environment.prod.ts';
+const targetPath = '../src/environments/environment.prod.ts';
 
 const envConfigFile = `export const environment = {
    production: true,
@@ -9,6 +9,8 @@ const envConfigFile = `export const environment = {
 `;
 
 fs.writeFile(targetPath, envConfigFile, 'utf8', (err: any) => {
+    console.log('here is write file')
+    console.log(envConfigFile)
   if (err) {
     return console.log(err);
   }
