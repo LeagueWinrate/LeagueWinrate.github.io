@@ -10,10 +10,11 @@ export class RiotService {
 
   constructor(private http: HttpClient) { }
 
-  postRiotAPI(url: string):Observable<any> {
+  getRiotAPI(url: string):Observable<any> {
     const na = "na1"
     const ameria = "americas"    
     let baseUrl = this.RiotUrl(na) + this.getSummonerByName("penguin27513") + RiotConstants.api_key
+    console.log(baseUrl)
     return this.http.get(baseUrl)
   }
 
