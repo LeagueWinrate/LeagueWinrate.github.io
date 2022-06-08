@@ -1,4 +1,4 @@
-name: GithubWorkflow
+name: pages-build-deployment
 on: [push]
 jobs:
   build:
