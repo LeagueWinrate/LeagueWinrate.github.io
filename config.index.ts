@@ -4,7 +4,7 @@ const targetPath = './src/environments/environment.prod.ts';
 
 const envConfigFile = `export const environment = {
    production: true,
-   riot_api: '${process.env['RIOT_API_KEY']}'
+   riot_api: '${process.env['RIOT_API']}'
 };
 `;
 
