@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href 'https://adrian27513.github.io/LeagueWinrate/'",
+    "build": "ng build --base-href https://adrian27513.github.io/LeagueWinrate/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "gh": "ng add angular-cli-ghpages",
