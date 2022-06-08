@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  riot_api: 'undefined'
+  riot_api: `${process.env['riot_api']}`
 };
