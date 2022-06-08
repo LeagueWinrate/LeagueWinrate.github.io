@@ -11,12 +11,10 @@ export class RiotService {
   constructor(private http: HttpClient) { }
 
   postRiotAPI(url: string):Observable<any> {
-    return of(url)
-
-    // const na = "na1"
-    // const ameria = "americas"    
-    // let baseUrl = "/summoner/v4/summoners/by-name/penguin27513"
-    // return this.http.get(baseUrl)
+    const na = "na1"
+    const ameria = "americas"    
+    let baseUrl = this.RiotUrl(na) + this.getSummonerByName("penguin27513") + RiotConstants.api_key
+    return this.http.get(baseUrl)
   }
 
   RiotUrl(region: string): string {
