@@ -15,7 +15,8 @@ export class RiotService {
     const ameria = "americas"    
     let baseUrl = this.RiotUrl(na) + this.getSummonerByName("penguin27513") + RiotConstants.api_key
     console.log(baseUrl)
-    return this.http.get(baseUrl)
+    return of(url)
+    // return this.http.get(baseUrl)
   }
 
   RiotUrl(region: string): string {
