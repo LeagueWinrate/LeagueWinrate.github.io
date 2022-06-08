@@ -17,6 +17,8 @@ export class RiotService {
     console.log(baseUrl)
     return of(url)
     // return this.http.get(baseUrl)
+    //test
+    
   }
 
   RiotUrl(region: string): string {
