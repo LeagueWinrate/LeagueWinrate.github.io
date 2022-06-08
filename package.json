@@ -6,6 +6,7 @@
     "start": "ng serve",
     "config": "ts-node config.index.ts",
     "build": "npm run config && ng build --base-href https://adrian27513.github.io/LeagueWinrate/",
+    "website": "ng build --base-href https://adrian27513.github.io/LeagueWinrate/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "gh": "ng add angular-cli-ghpages",
