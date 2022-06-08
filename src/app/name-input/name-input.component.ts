@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { RiotService } from "../riot/riot.service";
 
 @Component({
     selector: 'lw-names',
@@ -12,6 +13,7 @@ export class NameInput {
     enemyChampions: string[] = ['','','','','']
     estimateClicked = false;
 
+    constructor(private riotService: RiotService) {}
     addNames(): void {
         this.names = this.nameInput.split('\n')
         this.names = this.names.map(e => e.replace(" joined the lobby", ""))
@@ -33,17 +35,26 @@ export class NameInput {
     //Comment
     estimateClick(): void {
         let emptyChamp = false
-        this.allyChampions.forEach((champ) => {
-            if (champ === '') {
-                emptyChamp = true;
-            }
-        })
-        this.enemyChampions.forEach((champ) => {
-            if (champ === '') {
-                emptyChamp = true;
-            }
-        })
+        // this.allyChampions.forEach((champ) => {
+        //     if (champ === '') {
+        //         emptyChamp = true;
+        //     }
+        // })
+        // this.enemyChampions.forEach((champ) => {
+        //     if (champ === '') {
+        //         emptyChamp = true;
+        //     }
+        // })
         this.estimateClicked = !emptyChamp;
-        console.log(this.estimateClicked)
+        if (!emptyChamp) {
+            this.riotService.postRiotAPI("test").subscribe({
+                next: result => console.log(result),
+                error: err => console.log(err)
+            }
+            );
+        }
+        // console.log(this.estimateClicked)
     }
+
+
 }
