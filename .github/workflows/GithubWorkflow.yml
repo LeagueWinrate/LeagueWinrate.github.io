@@ -1,5 +1,8 @@
 name: WorkflowTest
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     name: Build
@@ -13,3 +16,8 @@ jobs:
         run: npm run build
         env:
           riot_api: ${{ secrets.RIOT_API_KEY }}
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: dist

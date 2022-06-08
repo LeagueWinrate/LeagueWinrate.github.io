@@ -1,7 +1,7 @@
 import { environment } from "src/environments/environment";
 
-// let key = environment.riot_api
-let key = process.env['riot_api']
+let key = environment.riot_api
+// let key = `${process.env["riot_api"]}`
 
 export const RiotConstants = {
     summoner_version: 'v4',
