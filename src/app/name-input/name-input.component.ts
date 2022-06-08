@@ -47,7 +47,7 @@ export class NameInput {
         // })
         this.estimateClicked = !emptyChamp;
         if (!emptyChamp) {
-            this.riotService.getRiotAPI("test").subscribe({
+            this.riotService.getRiotAPI("testing").subscribe({
                 next: result => console.log(result),
                 error: err => console.log(err)
             }
