@@ -1,0 +1,28 @@
+<div class="input">
+    <div class="name-label">Enter Names: </div>
+    <div class="text-area-input">
+        <textarea name="Text1" cols="40" rows="5"
+                [(ngModel)]="nameInput"></textarea>
+    </div>
+    <div class="enter">
+        <button class="btn btn-primary"
+                (click)="addNames()">
+            Submit
+        </button>
+    </div>
+    <div class="row" *ngFor="let player of names; let playerIndex = index">
+        <div class="col-md-2">{{player}}</div>
+        <div class="col-md-2">
+            <input id={{player}} type="text" />
+        </div>
+        <div class="col-md-2">Enemy Player {{playerIndex + 1}}</div>
+        <div class="col-md-2">
+            <input id=enemy{{playerIndex}} type="text" />
+        </div>
+    </div>
+    <div class="button" *ngIf="names.length" (click)="estimateClick()">
+        <button class="btn btn-primary" (click)="getValue()">Get Estimate</button>
+    </div>
+    <div *ngIf="estimateClicked">Ally Champions: {{allyChampions}}</div>
+    <div *ngIf="estimateClicked">Enemy Champions: {{enemyChampions}}</div>
+</div>
