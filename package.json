@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "config": 
-     "ts-node -O '{\"module\": \"commonjs\"}' ./config.index.ts",
+    "config": "ts-node config.index.ts",
      "build": "npm run config && ng build --base-href https://adrian27513.github.io/LeagueWinrate/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
