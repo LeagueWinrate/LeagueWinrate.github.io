@@ -1,4 +1,4 @@
-import {writeFile} from 'fs';
+const fs = require('fs');
 
 const targetPath = './src/environments/environment.prod.ts';
 
@@ -8,7 +8,7 @@ const envConfigFile = `export const environment = {
 };
 `;
 
-writeFile(targetPath, envConfigFile, 'utf8', (err) => {
+fs.writeFile(targetPath, envConfigFile, 'utf8', (err: any) => {
   if (err) {
     return console.log(err);
   }
