@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "config": "ts-node config.index.ts",
-     "build": "npm run config && ng build --base-href https://adrian27513.github.io/LeagueWinrate/",
+    "build": "npm run config && ng build --base-href https://adrian27513.github.io/LeagueWinrate/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "gh": "ng add angular-cli-ghpages",
@@ -37,6 +37,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "ts-node": "^10.8.1",
     "typescript": "~4.7.2"
   }
 }
