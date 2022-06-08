@@ -13,7 +13,7 @@ export class RiotService {
   getRiotAPI(url: string):Observable<any> {
     const na = "na1"
     const ameria = "americas"    
-    let baseUrl = this.RiotUrl(na) + this.getSummonerByName("penguin27513") + RiotConstants.api_key
+    let baseUrl = this.RiotUrl(na) + this.getSummonerByName("penguin27513") + `${process.env['riot_api']}`
     console.log(baseUrl)
     return this.http.get(baseUrl)
   }
