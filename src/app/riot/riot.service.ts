@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { RiotConstants } from './constants';
@@ -15,9 +15,15 @@ export class RiotService {
     const ameria = "americas"    
     let baseUrl = this.RiotUrl(na) + this.getSummonerByName("penguin27513") + RiotConstants.api_key
     console.log(baseUrl)
-    return of(url)
+    // return of(url)
     // return this.http.get(baseUrl)
-    //test
+
+    const httpOptions = {
+      headers: new HttpHeaders({ "Access-Control-Allow-Origin" : "*" 
+      })};
+
+    return this.http.get('https://u.gg/lol/champions/lulu/build', httpOptions )
+    // test
     
   }
 

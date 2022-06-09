@@ -1,7 +1,4 @@
-import { environment } from "src/environments/environment";
-
-let key = environment.riot_api
-// let key = `${process.env["riot_api"]}`
+let key = 'RGAPI-ecc59972-6bf3-425c-8960-4a663927692c'
 
 export const RiotConstants = {
     summoner_version: 'v4',
