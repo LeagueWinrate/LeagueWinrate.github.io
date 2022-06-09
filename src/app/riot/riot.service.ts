@@ -15,15 +15,20 @@ export class RiotService {
     const ameria = "americas"    
     let baseUrl = this.RiotUrl(na) + this.getSummonerByName("penguin27513") + RiotConstants.api_key
     console.log(baseUrl)
-    // return of(url)
-    // return this.http.get(baseUrl)
 
-    const httpOptions = {
-      headers: new HttpHeaders({ "Access-Control-Allow-Origin" : "*" 
-      })};
+    // const usersUrl = "https://getbootstrap.com/docs/4.0/components/buttons/";
+    // const usersUrl = "https://developer.riotgames.com/docs/portal#product-registration_application-process"
+    const usersUrl = "https://na.op.gg/summoners/na/penguin27513"
+    // const usersUrl = "https://u.gg/lol/profile/na1/penguin27513/overview/"
 
-    return this.http.get('https://u.gg/lol/champions/lulu/build', httpOptions )
-    // test
+    let request = this.http.get(usersUrl, {responseType: "text" as const})
+    request.subscribe({
+      next: (data) => console.log("data", data),
+      error: (err) => (console.log("error", err))
+    })
+
+    return of('hi');
+    // return this.http.get('https://u.gg/lol/champions/lulu/build', {responseType: "text" as const} )
     
   }
 
