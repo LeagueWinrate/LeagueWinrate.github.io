@@ -96,11 +96,4 @@ export class NameInput {
         // return results
     }
 
-    prepareData(input: string) {
-        const inputString = input.substring(1, input.length-1)
-        const dataArray = inputString.split(',').map((x) => +x)
-        const dataFloat = Float32Array.from(dataArray);
-    }
-
-
 }
