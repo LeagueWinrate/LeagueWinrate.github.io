@@ -14,7 +14,7 @@ export class NameInput {
     enemyChampions: string[] = []
     addNamesClicked = false;
     estimateClicked = false;
-    output = "Loading Please Wait"
+    output = "Loading Please Wait... This will take about 30-45 seconds"
 
     constructor(private riotService: RiotService) {}
     addNames(): void {
@@ -59,9 +59,10 @@ export class NameInput {
             "enemyChamp5": this.enemyChampions[4],
         }
         this.estimateClicked = !emptyChamp;
+        console.log("start")
         if (!emptyChamp) {
             this.riotService.getRiotAPI(data).subscribe({
-                next: result => this.output = result,
+                next: result => this.output = result.body,
                 error: err => console.log(err)
             }
             );
