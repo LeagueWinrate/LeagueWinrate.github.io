@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { RiotService } from "../riot/riot.service";
 import { RiotInput } from "../riot/input"
-const ort = require('onnxruntime-web');
 
 @Component({
     selector: 'lw-names',
@@ -9,48 +8,40 @@ const ort = require('onnxruntime-web');
     styleUrls: ['./name-input.components.css']
 })
 export class NameInput {
-    InferenceSession = ort.InferenceSession;
-    Tensor = ort.Tensor;
-
     nameInput = '';
     names: string[] = [];
-    allyChampions: string[] = ['','','','',''];
-    enemyChampions: string[] = ['','','','','']
+    allyChampions: string[] = [];
+    enemyChampions: string[] = []
+    addNamesClicked = false;
     estimateClicked = false;
+    output = "Loading Please Wait"
 
     constructor(private riotService: RiotService) {}
     addNames(): void {
+        this.addNamesClicked = true;
         this.names = this.nameInput.trim().split('\n')
         this.names = this.names.map(e => e.replace(" joined the lobby", ""))
     }
 
     getValue(): void {
-        this.names.forEach((player, id) => {
-            let allyChampInput = document.querySelector("#"+player) as HTMLInputElement;
-            let enemyChampInput = document.querySelector("#enemy"+id) as HTMLInputElement;
+        for (let i = 0; i < 5; i++) {
+            let allyChampInput = document.querySelector("#ally"+i) as HTMLInputElement;
+            let enemyChampInput = document.querySelector("#enemy"+i) as HTMLInputElement;
             if (allyChampInput != null) {
-                this.allyChampions[id] = allyChampInput.value.replace(/\s+/g, '').toLocaleLowerCase();
+                this.allyChampions.push(allyChampInput.value.replace(/\s+/g, '').toLocaleLowerCase());
             }
 
             if (enemyChampInput != null) {
-                this.enemyChampions[id] = enemyChampInput.value.replace(/\s+/g, '').toLocaleLowerCase();
+                this.enemyChampions.push(enemyChampInput.value.replace(/\s+/g, '').toLocaleLowerCase());
             }
-        })
-    }
-    estimateClick(): void {
-        let emptyChamp = false
-        // this.allyChampions.forEach((champ) => {
-        //     if (champ === '') {
-        //         emptyChamp = true;
-        //     }
-        // })
-        // this.enemyChampions.forEach((champ) => {
-        //     if (champ === '') {
-        //         emptyChamp = true;
-        //     }
-        // })
+        }
 
-        const data: RiotInput = {
+
+    }
+
+    estimateClick(): void {
+        let emptyChamp = this.allyChampions.length == 0 || this.enemyChampions.length == 0
+        let data: RiotInput = {
             "name1": this.names[0],
             "name2": this.names[1],
             "name3": this.names[2],
@@ -69,31 +60,11 @@ export class NameInput {
         }
         this.estimateClicked = !emptyChamp;
         if (!emptyChamp) {
-            this.runInference("hi");
-            // this.riotService.getRiotAPI(data).subscribe({
-            //     next: result => this.runInference(result),
-            //     error: err => console.log(err)
-            // }
-            // );
+            this.riotService.getRiotAPI(data).subscribe({
+                next: result => this.output = result,
+                error: err => console.log(err)
+            }
+            );
         }
     }
-
-    async runInference(input: string) {
-        console.log(input)
-        console.log("---")
-
-        const session = await ort.InferenceSession.create('../src/app/name-input/LeagueWinOneO.onnx', { executionProviders: ['wasm']});
-
-        // const session = await this.InferenceSession.create('LeagueWinOneO.onnx');
-
-        const dataA = Float32Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14,15,16,17,18,19,20]);
-        // const data = this.prepareData(input);
-        const tensorA = new ort.Tensor('float32', dataA, [3, 4]);
-        const feed = {float_input : new ort.Tensor('float32', tensorA, [1,20])}
-        const results = await session.run(feed);
-        console.log(results)
-        console.log(results.c.data)
-        // return results
-    }
-
 }
