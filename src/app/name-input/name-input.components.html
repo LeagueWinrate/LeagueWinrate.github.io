@@ -68,8 +68,8 @@
         </div>
     </div>
     
-    <div class="button" *ngIf="names.length" (click)="estimateClick()">
-        <button class="btn btn-primary" (click)="getValue()">Get Estimate</button>
+    <div class="button" *ngIf="names.length">
+        <button class="btn btn-primary" (click)="estimateClick()">Get Estimate</button>
     </div>
     <h2 *ngIf="estimateClicked">{{output}}</h2>
 </div>
