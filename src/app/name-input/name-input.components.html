@@ -1,68 +1,69 @@
-<div class="input">
-    <div class="name-label">Enter Names: </div>
+<div class="text-input">
+    Enter Names (Paste Joined Lobby):
     <div class="text-area-input">
         <textarea name="Text1" cols="40" rows="5"
                 [(ngModel)]="nameInput"></textarea>
     </div>
     <div class="enter">
         <button class="btn btn-primary"
-                (click)="addNames()">
+                (click)="addNames()"
+                [disabled]="!nameInput">
             Submit
         </button>
     </div>
 
     <div *ngIf="addNamesClicked">
         <div class="row">
-            <div class="col-md-2">{{names[0]}}</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">{{names[0]}}</div>
+            <div class="col-xl-2">
                 <input id=ally0 type="text" />
             </div>
-            <div class="col-md-2">Enemy Player 1</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">Enemy Player 1</div>
+            <div class="col-xl-2">
                 <input id=enemy0 type="text" />
             </div>
         </div>
     
         <div class="row">
-            <div class="col-md-2">{{names[1]}}</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">{{names[1]}}</div>
+            <div class="col-xl-2">
                 <input id=ally1 type="text" />
             </div>
-            <div class="col-md-2">Enemy Player 2</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">Enemy Player 2</div>
+            <div class="col-xl-2">
                 <input id=enemy1 type="text" />
             </div>
         </div>
     
         <div class="row">
-            <div class="col-md-2">{{names[2]}}</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">{{names[2]}}</div>
+            <div class="col-xl-2">
                 <input id=ally2 type="text" />
             </div>
-            <div class="col-md-2">Enemy Player 3</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">Enemy Player 3</div>
+            <div class="col-xl-2">
                 <input id=enemy2 type="text" />
             </div>
         </div>
     
         <div class="row">
-            <div class="col-md-2">{{names[3]}}</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">{{names[3]}}</div>
+            <div class="col-xl-2">
                 <input id=ally3 type="text" />
             </div>
-            <div class="col-md-2">Enemy Player 4</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">Enemy Player 4</div>
+            <div class="col-xl-2">
                 <input id=enemy3 type="text" />
             </div>
         </div>
     
         <div class="row">
-            <div class="col-md-2">{{names[4]}}</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">{{names[4]}}</div>
+            <div class="col-xl-2">
                 <input id=ally4 type="text" />
             </div>
-            <div class="col-md-2">Enemy Player 5</div>
-            <div class="col-md-2">
+            <div class="col-xl-2">Enemy Player 5</div>
+            <div class="col-xl-2">
                 <input id=enemy4 type="text" />
             </div>
         </div>

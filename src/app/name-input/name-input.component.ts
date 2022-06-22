@@ -15,6 +15,7 @@ export class NameInput {
     addNamesClicked = false;
     estimateClicked = false;
     output = "Loading Please Wait... This will take about 5-10 seconds"
+    championList = Object.values(require("./champion_name.json"))
 
     constructor(private riotService: RiotService) {}
     addNames(): void {

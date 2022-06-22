@@ -1,3 +1,7 @@
 div {
-    padding-bottom: 10px;
+    padding-bottom: 1rem;
+}
+
+input {
+    max-width: 20rem;
 }
