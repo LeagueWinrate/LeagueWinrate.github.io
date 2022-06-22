@@ -1,5 +1,5 @@
 <div class="text-input">
-    Enter Names (Paste Joined Lobby):
+    Enter Names (Paste Joined Lobby Text):
     <div class="text-area-input">
         <textarea name="Text1" cols="40" rows="5"
                 [(ngModel)]="nameInput"></textarea>
@@ -12,65 +12,101 @@
         </button>
     </div>
 
-    <div *ngIf="addNamesClicked">
-        <div class="row">
-            <div class="col-xl-2">{{names[0]}}</div>
-            <div class="col-xl-2">
-                <input id=ally0 type="text" />
+    <div *ngIf="addNamesValid">
+        <h4>Type in each dropdown to search for champions:</h4>
+        <hr>
+        <form #form="ngForm" (ngSubmit)="estimateClick(form)">
+            <div class="row">
+                <div class="form-group col">
+                    <label for="ally0">{{names[0]}}</label>
+                    <select id="ally0" class="form-select" name="ally0" [(ngModel)]="champInput.ally0" required #ally0="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="ally0.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
+
+                <div class=" form-group col">
+                    <label for="enemy0">Enemy 1</label>
+                    <select id="enemy0" class="form-select" name="enemy0" [(ngModel)]="champInput.enemy0" required #enemy0="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="enemy0.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
             </div>
-            <div class="col-xl-2">Enemy Player 1</div>
-            <div class="col-xl-2">
-                <input id=enemy0 type="text" />
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="ally1">{{names[1]}}</label>
+                    <select id="ally1" class="form-select" name="ally1" [(ngModel)]="champInput.ally1" required #ally1="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="ally1.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
+
+                <div class=" form-group col">
+                    <label for="enemy1">Enemy 2</label>
+                    <select id="enemy1" class="form-select" name="enemy1" [(ngModel)]="champInput.enemy1" required #enemy1="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="enemy1.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
             </div>
-        </div>
-    
-        <div class="row">
-            <div class="col-xl-2">{{names[1]}}</div>
-            <div class="col-xl-2">
-                <input id=ally1 type="text" />
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="ally2">{{names[2]}}</label>
+                    <select id="ally2" class="form-select" name="ally2" [(ngModel)]="champInput.ally2" required #ally2="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="ally2.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
+
+                <div class=" form-group col">
+                    <label for="enemy2">Enemy 3</label>
+                    <select id="enemy2" class="form-select" name="enemy2" [(ngModel)]="champInput.enemy2" required #enemy2="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="enemy2.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
             </div>
-            <div class="col-xl-2">Enemy Player 2</div>
-            <div class="col-xl-2">
-                <input id=enemy1 type="text" />
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="ally3">{{names[3]}}</label>
+                    <select id="ally3" class="form-select" name="ally3" [(ngModel)]="champInput.ally3" required #ally3="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="ally3.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
+                <div class=" form-group col">
+                    <label for="enemy3">Enemy 4</label>
+                    <select id="enemy3" class="form-select" name="enemy3" [(ngModel)]="champInput.enemy3" required #enemy3="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="enemy3.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
             </div>
-        </div>
-    
-        <div class="row">
-            <div class="col-xl-2">{{names[2]}}</div>
-            <div class="col-xl-2">
-                <input id=ally2 type="text" />
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="ally4">{{names[4]}}</label>
+                    <select id="ally4" class="form-select" name="ally4" [(ngModel)]="champInput.ally4" required #ally4="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="ally4.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
+                <div class=" form-group col">
+                    <label for="enemy4">Enemy 5</label>
+                    <select id="enemy4" class="form-select" name="enemy4" [(ngModel)]="champInput.enemy4" required #enemy4="ngModel">
+                        <option *ngFor="let champ of championList" value="{{champ[0]}}">{{champ[1]}}</option>
+                    </select>
+                    <div [hidden]="enemy4.valid || !form.submitted" class="alert alert-danger">Please Select a Champion</div>
+                </div>
             </div>
-            <div class="col-xl-2">Enemy Player 3</div>
-            <div class="col-xl-2">
-                <input id=enemy2 type="text" />
+            <div>
+                <button class="btn btn-primary">Get Estimate</button>
             </div>
-        </div>
-    
-        <div class="row">
-            <div class="col-xl-2">{{names[3]}}</div>
-            <div class="col-xl-2">
-                <input id=ally3 type="text" />
-            </div>
-            <div class="col-xl-2">Enemy Player 4</div>
-            <div class="col-xl-2">
-                <input id=enemy3 type="text" />
-            </div>
-        </div>
-    
-        <div class="row">
-            <div class="col-xl-2">{{names[4]}}</div>
-            <div class="col-xl-2">
-                <input id=ally4 type="text" />
-            </div>
-            <div class="col-xl-2">Enemy Player 5</div>
-            <div class="col-xl-2">
-                <input id=enemy4 type="text" />
-            </div>
-        </div>
+        </form>
     </div>
-    
-    <div class="button" *ngIf="names.length">
-        <button class="btn btn-primary" (click)="estimateClick()">Get Estimate</button>
-    </div>
-    <h2 *ngIf="estimateClicked">{{output}}</h2>
+    <h2 *ngIf="estimate">{{output}}</h2>
 </div>

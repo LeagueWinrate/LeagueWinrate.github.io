@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NameInput } from './name-input/name-input.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { RiotService } from "../riot/riot.service";
 import { RiotInput } from "../riot/input"
+import { ChampInput } from "./champ-input";
+import { NgForm } from "@angular/forms";
 
 @Component({
     selector: 'lw-names',
@@ -12,42 +14,49 @@ export class NameInput {
     names: string[] = [];
     allyChampions: string[] = [];
     enemyChampions: string[] = [];
-    addNamesClicked = false;
-    estimateClicked = false;
+    addNamesValid = false;
+    estimate = false;
+    empty = false
     output = "Loading Please Wait... This will take about 5-10 seconds"
-    championList = Object.values(require("./champion_name.json"))
+    championList: string[] = Object.values(require("./champion_name.json"))
+    champInput: ChampInput = {
+        ally0: '',
+        ally1: '',
+        ally2: '',
+        ally3: '',
+        ally4: '',
+        enemy0: '',
+        enemy1: '',
+        enemy2: '',
+        enemy3: '',
+        enemy4: '',
+    }
 
     constructor(private riotService: RiotService) {}
     addNames(): void {
-        this.addNamesClicked = true;
         this.names = this.nameInput.trim().split('\n')
         this.names = this.names.map(e => e.replace(" joined the lobby", ""))
+        if (this.names.length == 5) {
+            this.addNamesValid = true;
+        }
     }
 
     getValue(): void {
-        this.allyChampions = [];
-        this.enemyChampions = [];
-        for (let i = 0; i < 5; i++) {
-            let allyChampInput = document.querySelector("#ally"+i) as HTMLInputElement;
-            let enemyChampInput = document.querySelector("#enemy"+i) as HTMLInputElement;
-            if (allyChampInput != null) {
-                this.allyChampions.push(allyChampInput.value.replace(/\s+/g, '').toLocaleLowerCase());
+        let champions = Object.values(this.champInput)
+        champions.forEach(champ => {
+            if (champ === '') {
+                this.empty = true;
             }
-
-            if (enemyChampInput != null) {
-                this.enemyChampions.push(enemyChampInput.value.replace(/\s+/g, '').toLocaleLowerCase());
-            }
-        }
-
-
+        })
     }
 
-    estimateClick(): void {
-        this.getValue()
-        let emptyChamp = this.allyChampions.length == 0 || this.enemyChampions.length == 0
-        this.estimateClicked = !emptyChamp;
-        this.output = "Loading Please Wait... This will take about 5-10 seconds"
-        if (!emptyChamp) {
+    estimateClick(form: NgForm): void {
+        if (form.valid) {
+            this.getValue()
+            this.output = "Loading Please Wait... This will take about 5-10 seconds"
+            this.estimate = true;
+            this.allyChampions = [this.champInput.ally0, this.champInput.ally1, this.champInput.ally2, this.champInput.ally3, this.champInput.ally4]
+            this.enemyChampions = [this.champInput.enemy0, this.champInput.enemy1, this.champInput.enemy2, this.champInput.enemy3, this.champInput.enemy4]
             this.riotService.getRiotAPI(this.names, this.allyChampions, this.enemyChampions).subscribe({
                 next: result => {
                     this.output = result.body
@@ -55,6 +64,7 @@ export class NameInput {
                 error: err => console.log(err)
             }
             );
+
         }
     }
 }
