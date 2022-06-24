@@ -1,27 +1,15 @@
-# LeagueWinrate
+# League Winrate Calculator
+League Winrate Calculator is a machine learning based web application that takes in the names and champions of players in a ranked lobby and makes a prediction which team will win.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
+The winrate for a given lobby is calculated using player ranked winrate, the champion overall winrate, and player specific champion winrate. The current deployed version of the model was trained without any enemy player information.
 
-## Development server
+The "One Sided" model was trained using ~3600 ranked games (~400 games from each division ranging from Gold 1 to Diamond 1) and preliminary testing of 300 randomly selected games from Gold 1 to Diamond 1 gave an 82% accuracy rate in predicting the correct outcome.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Future Work
+* Increase the number of parameters that are taken into account when calculating a games winrate
+    * Champions
+    * Games played
+    * Gold per minute
+    * etc.
+* Increase accuracy of "One Sided" model by collecting more game data points and increasing model inputs.
+* Release the "Two Sided" model for more accurate post-champion select predictions.
