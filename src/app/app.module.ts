@@ -11,7 +11,7 @@ import { NameInput } from './name-input/name-input.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NameInput
+    NameInput,
   ],
   imports: [
     BrowserModule,
