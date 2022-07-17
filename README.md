@@ -1,5 +1,5 @@
-# League Winrate Calculator
-League Winrate Calculator is a machine learning based web application that takes in the names and champions of players in a ranked lobby and makes a prediction which team will win.
+# League Winrate Estimator
+League Winrate Estimator is a machine learning based web application that takes in the names and champions of players in a ranked lobby and makes a prediction which team will win.
 
 The winrate for a given lobby is calculated using player ranked winrate, the champion overall winrate, and player specific champion winrate. The current deployed version of the model was trained without any enemy player information.
 
