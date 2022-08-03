@@ -10,6 +10,7 @@ import { NgForm } from "@angular/forms";
     styleUrls: ['./name-input.components.css']
 })
 export class NameInput {
+    gettingEstimate = false;
     nameInput = '';
     names: string[] = [];
     allyChampions: string[] = [];
@@ -51,6 +52,7 @@ export class NameInput {
     }
 
     estimateClick(form: NgForm): void {
+        this.gettingEstimate = true;
         if (form.valid) {
             this.getValue()
             this.output = "Loading Please Wait... This will take about 5-10 seconds"
@@ -60,8 +62,12 @@ export class NameInput {
             this.riotService.getRiotAPI(this.names, this.allyChampions, this.enemyChampions).subscribe({
                 next: result => {
                     this.output = result.body
+                    this.gettingEstimate = false;
                 },
-                error: err => console.log(err)
+                error: err => {
+                    console.log(err)
+                    this.gettingEstimate = false;
+                }
             }
             );
 
